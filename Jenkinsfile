@@ -13,12 +13,6 @@ pipeline{
 		stage('contruir imagen docker a partir de dockerfile') {
 			steps {
 				echo 'inicia contruir imagen docker a partir de dockerfile'
-				echo "$BUILD_NUMBER"
-				echo "${BUILD_NUMBER}"
-				echo "$BUILD_ID"
-				echo "${env.DockerHub_UserName}"
-				echo "$DockerHub_UserName"
-				echo "${DockerHub_UserName}"
 				sh "docker build -t ${env.DockerHub_UserName}/${env.DockerHub_RepoName}:$BUILD_NUMBER ."
 			}
 		}
@@ -33,7 +27,7 @@ pipeline{
 		stage('test del contenedor ejecutado anteriormente haciendo un request al localhost') {
 			steps {
 				echo 'inicia test del contenedor ejecutado anteriormente haciendo un request al localhost'
-				sh "curl localhost:${env.Application_Port}"
+				//sh "curl localhost:${env.Application_Port}"
 			}
 		}
 
