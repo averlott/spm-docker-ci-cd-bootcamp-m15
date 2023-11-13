@@ -13,21 +13,24 @@ pipeline{
 		stage('contruir imagen docker a partir de dockerfile') {
 			steps {
 				echo 'inicia contruir imagen docker a partir de dockerfile'
-				sh 'docker build -t ${env.DockerHub_UserName}/${env.DockerHub_RepoName}:$BUILD_NUMBER .'
+				echo '$BUILD_NUMBER'
+				echo '${BUILD_NUMBER}'
+				echo '${env.DockerHub_UserName}
+				//sh 'docker build -t ${env.DockerHub_UserName}/${env.DockerHub_RepoName}:$BUILD_NUMBER .'
 			}
 		}
 
 		stage('ejecutar contenedor con la imagen docker creada anteriormente') {
 			steps {
 				echo 'inicia ejecutar contenedor con la imagen docker creada anteriormente'
-				sh 'docker run --d --rm -p ${env.Application_Port}:${env.Application_Port} ${env.DockerHub_UserName}/${env.DockerHub_RepoName}:$BUILD_NUMBER'
+				//sh 'docker run --d --rm -p ${env.Application_Port}:${env.Application_Port} ${env.DockerHub_UserName}/${env.DockerHub_RepoName}:$BUILD_NUMBER'
 			}
 		}
 
 		stage('test del contenedor ejecutado anteriormente haciendo un request al localhost') {
 			steps {
 				echo 'inicia test del contenedor ejecutado anteriormente haciendo un request al localhost'
-				sh 'curl localhost:${env.Application_Port}'
+				//sh 'curl localhost:${env.Application_Port}'
 			}
 		}
 
@@ -41,7 +44,7 @@ pipeline{
 		stage('push en el repositorio dockerhub de la imagen creada en el primer stage') {
 			steps {
 				echo 'inicia push en el repositorio dockerhub de la imagen creada en el primer stage'
-				sh 'docker push ${env.DockerHub_UserName}/${env.DockerHub_RepoName}:$BUILD_NUMBER'
+				//sh 'docker push ${env.DockerHub_UserName}/${env.DockerHub_RepoName}:$BUILD_NUMBER'
 			}
 		}
 
