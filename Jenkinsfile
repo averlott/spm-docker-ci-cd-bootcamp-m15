@@ -15,7 +15,7 @@ pipeline{
 				echo 'inicia contruir imagen docker a partir de dockerfile'
 				echo '$BUILD_NUMBER'
 				echo '${BUILD_NUMBER}'
-				echo '${env.DockerHub_UserName}
+				echo '${env.DockerHub_UserName}'
 				//sh 'docker build -t ${env.DockerHub_UserName}/${env.DockerHub_RepoName}:$BUILD_NUMBER .'
 			}
 		}
