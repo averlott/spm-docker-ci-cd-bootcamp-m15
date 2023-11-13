@@ -53,7 +53,8 @@ pipeline{
                 		sh 'docker images -q | xargs --no-run-if-empty docker rmi'
             		}
 		}
-
+	}
+	
 	post {
 		always {
 			echo 'inicia logout en el repositorio dockerhub'
