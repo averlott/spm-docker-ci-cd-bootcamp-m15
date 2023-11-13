@@ -19,35 +19,35 @@ pipeline{
 				echo "${env.DockerHub_UserName}"
 				echo "$DockerHub_UserName"
 				echo "${DockerHub_UserName}"
-				//sh 'docker build -t ${env.DockerHub_UserName}/${env.DockerHub_RepoName}:$BUILD_NUMBER .'
+				sh "docker build -t ${env.DockerHub_UserName}/${env.DockerHub_RepoName}:$BUILD_NUMBER ."
 			}
 		}
 
 		stage('ejecutar contenedor con la imagen docker creada anteriormente') {
 			steps {
 				echo 'inicia ejecutar contenedor con la imagen docker creada anteriormente'
-				//sh 'docker run --d --rm -p ${env.Application_Port}:${env.Application_Port} ${env.DockerHub_UserName}/${env.DockerHub_RepoName}:$BUILD_NUMBER'
+				sh "docker run --d --rm -p ${env.Application_Port}:${env.Application_Port} ${env.DockerHub_UserName}/${env.DockerHub_RepoName}:$BUILD_NUMBER"
 			}
 		}
 
 		stage('test del contenedor ejecutado anteriormente haciendo un request al localhost') {
 			steps {
 				echo 'inicia test del contenedor ejecutado anteriormente haciendo un request al localhost'
-				//sh 'curl localhost:${env.Application_Port}'
+				sh "curl localhost:${env.Application_Port}"
 			}
 		}
 
 		stage('login en el repositorio dockerhub') {
 			steps {
 				echo 'inicia login en DockerHub'
-				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+				sh "echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin"
 			}
 		}
 
 		stage('push en el repositorio dockerhub de la imagen creada en el primer stage') {
 			steps {
 				echo 'inicia push en el repositorio dockerhub de la imagen creada en el primer stage'
-				//sh 'docker push ${env.DockerHub_UserName}/${env.DockerHub_RepoName}:$BUILD_NUMBER'
+				//sh "docker push ${env.DockerHub_UserName}/${env.DockerHub_RepoName}:$BUILD_NUMBER"
 			}
 		}
 
