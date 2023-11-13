@@ -26,7 +26,7 @@ pipeline{
 		stage('ejecutar contenedor con la imagen docker creada anteriormente') {
 			steps {
 				echo 'inicia ejecutar contenedor con la imagen docker creada anteriormente'
-				sh "docker run --d --rm -p ${env.Application_Port}:${env.Application_Port} ${env.DockerHub_UserName}/${env.DockerHub_RepoName}:$BUILD_NUMBER"
+				sh "docker run -d --rm -p ${env.Application_Port}:${env.Application_Port} ${env.DockerHub_UserName}/${env.DockerHub_RepoName}:$BUILD_NUMBER"
 			}
 		}
 
