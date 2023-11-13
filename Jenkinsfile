@@ -17,6 +17,8 @@ pipeline{
 				echo "${BUILD_NUMBER}"
 				echo "$BUILD_ID"
 				echo "${env.DockerHub_UserName}"
+				echo "$DockerHub_UserName"
+				echo "${DockerHub_UserName}"
 				//sh 'docker build -t ${env.DockerHub_UserName}/${env.DockerHub_RepoName}:$BUILD_NUMBER .'
 			}
 		}
