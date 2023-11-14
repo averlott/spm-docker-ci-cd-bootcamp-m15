@@ -13,7 +13,7 @@ pipeline{
 		stage('detener y eliminar contenedores') {
 			steps {
 				echo 'inicia detener y eliminar contenedores'
-				sh "docker stop algo || true && docker rm -f algo || true && ls -la"
+				sh "docker stop ${env.DockerHub_RepoName} || true && docker rm -f ${env.DockerHub_RepoName} || true"
 			}
 		}
 		
