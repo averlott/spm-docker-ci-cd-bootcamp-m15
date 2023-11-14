@@ -9,11 +9,13 @@ pipeline{
 	}
 
 	stages {
-		steps {
-		    script{
-		        def lastSuccessBuildName = Jenkins.instance.getItem(env.JOB_NAME).lastSuccessfulBuild.displayName
-		        echo "Last Success Build Name: ${lastSuccessBuildName}"
-		    }
+		stage('obtener ultimo build') {
+			steps {
+			    script{
+			        def lastSuccessBuildName = Jenkins.instance.getItem(env.JOB_NAME).lastSuccessfulBuild.displayName
+			        echo "Last Success Build Name: ${lastSuccessBuildName}"
+			    }
+			}
 		}
 		
 		stage('contruir imagen docker a partir de dockerfile') {
