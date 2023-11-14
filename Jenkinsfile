@@ -13,7 +13,7 @@ pipeline{
 		stage('detener y eliminar contenedores') {
 			steps {
 				echo 'inicia detener y eliminar contenedores'
-				sh "docker rm $(docker stop $(docker ps -a -q --filter ancestor=${env.DockerHub_UserName}/${env.DockerHub_RepoName} --format='{{.ID}}'))"
+				sh "docker ps -aq | xargs docker stop | xargs docker rm"
 			}
 		}
 		
