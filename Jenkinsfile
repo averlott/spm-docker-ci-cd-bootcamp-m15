@@ -9,12 +9,11 @@ pipeline{
 	}
 
 	stages {
-		stage('obtener ultimo build') {
+
+		stage('detener y eliminar contenedores') {
 			steps {
-			    script{
-			        def lastSuccessBuildName = Jenkins.instance.getItem(env.JOB_NAME).lastSuccessfulBuild.displayName
-			        echo "Last Success Build Name: ${lastSuccessBuildName}"
-			    }
+				echo 'inicia detener y eliminar contenedores'
+				sh "docker rm $(docker stop $(docker ps -a -q --filter ancestor=${env.DockerHub_UserName}/${env.DockerHub_RepoName} --format="{{.ID}}"))"
 			}
 		}
 		
