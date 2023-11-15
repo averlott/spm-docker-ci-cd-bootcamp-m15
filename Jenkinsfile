@@ -35,7 +35,8 @@ pipeline{
 		stage('test del contenedor ejecutado anteriormente haciendo un request al localhost') {
 			steps {
 				echo 'inicia test del contenedor ejecutado anteriormente haciendo un request al localhost'
-				sh "curl localhost:${env.Application_Port} || true"
+				//sh "curl localhost:${env.Application_Expose_Port} || true"
+				sh "docker exec -ti ${env.DockerHub_RepoName} curl localhost:${env.Application_Expose_Port}"
 			}
 		}
 
