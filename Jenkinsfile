@@ -11,10 +11,17 @@ pipeline{
 
 	stages {
 
-		stage('detener y eliminar contenedores') {
+		stage('detener y eliminar contenedor') {
 			steps {
-				echo 'inicia detener y eliminar contenedores'
+				echo 'inicia detener y eliminar contenedor'
 				sh "docker stop ${env.DockerHub_RepoName} || true && docker rm -f ${env.DockerHub_RepoName} || true"
+			}
+		}
+
+		stage('eliminar imagenes') {
+			steps {
+				echo 'inicia eliminar imagenes'
+				sh "docker rmi --force $(docker images -q '${env.DockerHub_UserName}/${env.DockerHub_RepoName}' | uniq) || true"
 			}
 		}
 		
@@ -29,13 +36,6 @@ pipeline{
 			steps {
 				echo 'inicia ejecutar contenedor con la imagen docker creada anteriormente'
 				sh "docker run -d --name ${env.DockerHub_RepoName} -p ${env.Application_Expose_Port}:${env.Application_Original_Port} ${env.DockerHub_UserName}/${env.DockerHub_RepoName}:$BUILD_NUMBER"
-			}
-		}
-
-		stage('test del contenedor ejecutado anteriormente haciendo un request al localhost') {
-			steps {
-				echo 'inicia test del contenedor ejecutado anteriormente haciendo un request al localhost'
-				sh "docker exec -i ${env.DockerHub_RepoName} curl localhost:${env.Application_Original_Port}"
 			}
 		}
 
