@@ -5,7 +5,8 @@ pipeline{
 		DOCKERHUB_CREDENTIALS=credentials('dockerHub')
 		DockerHub_UserName = 'averlott'
 		DockerHub_RepoName = 'spm-openjdk-bootcamp-m14'
-		Application_Port = '8001'
+		Application_Original_Port = '3456'
+		Application_Expose_Port = '8001'
 	}
 
 	stages {
@@ -27,7 +28,7 @@ pipeline{
 		stage('ejecutar contenedor con la imagen docker creada anteriormente') {
 			steps {
 				echo 'inicia ejecutar contenedor con la imagen docker creada anteriormente'
-				sh "docker run -d --name ${env.DockerHub_RepoName} -p ${env.Application_Port}:${env.Application_Port} ${env.DockerHub_UserName}/${env.DockerHub_RepoName}:$BUILD_NUMBER"
+				sh "docker run -d --name ${env.DockerHub_RepoName} -p ${env.Application_Exposed_Port}:${env.Application_Original_Port} ${env.DockerHub_UserName}/${env.DockerHub_RepoName}:$BUILD_NUMBER"
 			}
 		}
 
