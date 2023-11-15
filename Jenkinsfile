@@ -34,7 +34,7 @@ pipeline{
 		stage('test del contenedor ejecutado anteriormente haciendo un request al localhost') {
 			steps {
 				echo 'inicia test del contenedor ejecutado anteriormente haciendo un request al localhost'
-				//sh "curl localhost:${env.Application_Port}"
+				sh "curl localhost:${env.Application_Port}" || true"
 			}
 		}
 
