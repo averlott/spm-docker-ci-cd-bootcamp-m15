@@ -5,6 +5,7 @@ pipeline{
 		DOCKERHUB_CREDENTIALS=credentials('dockerHub')
 		DockerHub_UserName = 'averlott'
 		DockerHub_RepoName = 'spm-openjdk-bootcamp-m14'
+		Docker_ContainerName = ${env.DockerHub_RepoName}
 		Application_Original_Port = '3456'
 		Application_Expose_Port = '8001'
 	}
@@ -14,7 +15,7 @@ pipeline{
 		stage('detener y eliminar contenedor') {
 			steps {
 				echo 'inicia detener y eliminar contenedor'
-				sh "docker stop ${env.DockerHub_RepoName} || true && docker rm -f ${env.DockerHub_RepoName} || true"
+				sh "docker stop ${env.Docker_ContainerName} || true && docker rm -f ${env.Docker_ContainerName} || true"
 			}
 		}
 
@@ -35,7 +36,7 @@ pipeline{
 		stage('ejecutar contenedor con la imagen docker creada anteriormente') {
 			steps {
 				echo 'inicia ejecutar contenedor con la imagen docker creada anteriormente'
-				sh "docker run -d --name ${env.DockerHub_RepoName} -p ${env.Application_Expose_Port}:${env.Application_Original_Port} ${env.DockerHub_UserName}/${env.DockerHub_RepoName}:$BUILD_NUMBER"
+				sh "docker run -d --name ${env.Docker_ContainerName} -p ${env.Application_Expose_Port}:${env.Application_Original_Port} ${env.DockerHub_UserName}/${env.DockerHub_RepoName}:$BUILD_NUMBER"
 			}
 		}
 
