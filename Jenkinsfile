@@ -57,7 +57,7 @@ pipeline{
 				echo 'inicia eliminar contenedores e imagenes no usadas'
                 		//sh 'docker ps -aq | xargs --no-run-if-empty docker rm'
                 		// unicamente elimina la imagen final
-                		sh 'docker images -q | xargs --no-run-if-empty docker rmi'
+                		//sh 'docker images -q | xargs --no-run-if-empty docker rmi'
             		}
 		}
 	}
