@@ -5,7 +5,7 @@ pipeline{
 		DOCKERHUB_CREDENTIALS=credentials('dockerHub')
 		DockerHub_UserName = 'averlott'
 		DockerHub_RepoName = 'spm-openjdk-bootcamp-m14'
-		Docker_ContainerName = ${env.DockerHub_RepoName}
+		Docker_ContainerName = "${env.DockerHub_RepoName}"
 		Application_Original_Port = '3456'
 		Application_Expose_Port = '8001'
 	}
