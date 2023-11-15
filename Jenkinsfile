@@ -48,7 +48,7 @@ pipeline{
 			}
 		}
 
-		stage('push en dockerhub con la imagen docker creada anteriormente) {
+		stage('push en dockerhub con la imagen docker creada anteriormente') {
 			steps {
 				echo 'inicia push en dockerhub con la imagen docker creada anteriormente'
 				//sh "docker push ${env.DockerHub_UserName}/${env.DockerHub_RepoName}:${env.DockerHub_TagName}_$BUILD_NUMBER"
