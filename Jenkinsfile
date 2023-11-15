@@ -21,7 +21,7 @@ pipeline{
 		stage('eliminar imagenes') {
 			steps {
 				echo 'inicia eliminar imagenes'
-				sh "docker rmi --force $(docker images -q '${env.DockerHub_UserName}/${env.DockerHub_RepoName}' | uniq) || true"
+				sh "docker rmi --force $(docker images -q ${env.DockerHub_UserName}/${env.DockerHub_RepoName} | uniq) || true"
 			}
 		}
 		
