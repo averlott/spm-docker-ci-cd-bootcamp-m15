@@ -41,16 +41,16 @@ pipeline{
 			}
 		}
 
-		stage('login en el repositorio dockerhub') {
+		stage('login en dockerhub') {
 			steps {
-				echo 'inicia login en DockerHub'
+				echo 'inicia login dockerhub'
 				sh "echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin"
 			}
 		}
 
-		stage('push en el repositorio dockerhub de la imagen creada en el primer stage') {
+		stage('push en dockerhub con la imagen docker creada anteriormente) {
 			steps {
-				echo 'inicia push en el repositorio dockerhub de la imagen creada en el primer stage'
+				echo 'inicia push en dockerhub con la imagen docker creada anteriormente'
 				//sh "docker push ${env.DockerHub_UserName}/${env.DockerHub_RepoName}:${env.DockerHub_TagName}_$BUILD_NUMBER"
 			}
 		}
@@ -59,7 +59,7 @@ pipeline{
 	
 	post {
 		always {
-			echo 'inicia logout en el repositorio dockerhub'
+			echo 'inicia logout en dockerhub'
 			sh 'docker logout'
 		}
 	}
