@@ -38,7 +38,7 @@ pipeline{
 			steps {
 				echo 'inicia ejecutar contenedor con la imagen docker creada anteriormente'
 				//sh "docker run -d --name ${env.Docker_ContainerName} -p ${env.Application_Expose_Port}:${env.Application_Original_Port} ${env.DockerHub_UserName}/${env.DockerHub_RepoName}:${env.DockerHub_TagName}_$BUILD_NUMBER"
-				sh "docker run --name ${env.Docker_ContainerName} -p ${env.Application_Expose_Port}:${env.Application_Original_Port} ${env.DockerHub_UserName}/${env.DockerHub_RepoName}:${env.DockerHub_TagName}_$BUILD_NUMBER"
+				sh "docker run -d --name ${env.Docker_ContainerName} -p ${env.Application_Expose_Port}:${env.Application_Original_Port} ${env.DockerHub_UserName}/${env.DockerHub_RepoName}:${env.DockerHub_TagName}_$BUILD_NUMBER"
 			}
 		}
 
