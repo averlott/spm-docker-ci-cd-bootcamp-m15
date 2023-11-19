@@ -37,11 +37,17 @@ pipeline{
 		stage('ejecutar contenedor con la imagen docker creada anteriormente') {
 			steps {
 				echo 'inicia ejecutar contenedor con la imagen docker creada anteriormente'
-				//sh "docker run -d --name ${env.Docker_ContainerName} -p ${env.Application_Expose_Port}:${env.Application_Original_Port} ${env.DockerHub_UserName}/${env.DockerHub_RepoName}:${env.DockerHub_TagName}_$BUILD_NUMBER"
 				sh "docker run -d --name ${env.Docker_ContainerName} -p ${env.Application_Expose_Port}:${env.Application_Original_Port} ${env.DockerHub_UserName}/${env.DockerHub_RepoName}:${env.DockerHub_TagName}_$BUILD_NUMBER"
 			}
 		}
 
+		stage('testear contenedor con un request a la aplicacion') {
+			steps {
+				echo 'testear contenedor con un request a la aplicacion'
+				sh "docker exec -i ${env.Docker_ContainerName} curl localhost:${env.Application_Original_Port}"
+			}
+		}		
+		
 		stage('login en dockerhub') {
 			steps {
 				echo 'inicia login dockerhub'
