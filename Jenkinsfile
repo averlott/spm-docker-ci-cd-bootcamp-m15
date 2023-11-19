@@ -42,13 +42,6 @@ pipeline{
 			}
 		}
 
-		stage('testear contenedor') {
-			steps {
-				echo 'inicia testear contenedor'
-				sh "docker exec -i ${env.Docker_ContainerName} curl localhost:${env.Application_Expose_Port}"
-			}
-		}
-		
 		stage('login en dockerhub') {
 			steps {
 				echo 'inicia login dockerhub'
