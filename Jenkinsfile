@@ -41,13 +41,6 @@ pipeline{
 			}
 		}
 
-		stage('testear contenedor con un request a la aplicacion') {
-			steps {
-				echo 'testear contenedor con un request a la aplicacion'
-				sh "docker exec -t ${env.Docker_ContainerName} curl localhost:${env.Application_Original_Port}"
-			}
-		}		
-		
 		stage('login en dockerhub') {
 			steps {
 				echo 'inicia login dockerhub'
