@@ -1,13 +1,29 @@
-name: hello-world
-on: push
+name: pipeline-bootcamp-m15
+on:
+  push:
+    branches:
+      - main
+
+env:
+  DockerHub_UserName: ${{ secrets.DOCKERHUB_USERNAME }}
+  DockerHub_Password: ${{ secrets.DOCKERHUB_TOKEN }}
+  DockerHub_RepoName: spm-openjdk-bootcamp-m14
+  DockerHub_TagName: github
+  Docker_ContainerName: ${{ env.DockerHub_RepoName }}
+  Application_Original_Port: 3456
+  Application_Expose_Port: 8001
+
 jobs:
-  my-job:
+  bootcamp-m15-job:
     runs-on: ubuntu-latest
     steps:
-      - name: my-step
-        run: echo "Hello World!"
+
+      - name: contruir imagen docker a partir de dockerfile
+        run:
+          docker build -t ${{env.DockerHub_UserName}}/${{env.DockerHub_RepoName}}:${{env.DockerHub_TagName}}_${{ github.run_id }} .
+
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          username: ${{env.DockerHub_UserName}}
+          password: ${{env.DockerHub_Password}}
