@@ -18,14 +18,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     
-      - name: Checkout codigo del repositorio
-        uses: actions/checkout@v2
+      - name: checkout codigo del repositorio
+        uses: actions/checkout@v3
         
       - name: contruir imagen docker a partir de dockerfile
         run:
           docker build -t ${{env.DockerHub_UserName}}/${{env.DockerHub_RepoName}}:${{env.DockerHub_TagName}}_${{ github.run_id }} .
+          
+      - name: ejecutar contenedor con la imagen docker creada anteriormente
+        run:
+          docker run -d --name ${{env.Docker_ContainerName}} -p ${{env.Application_Expose_Port}}:${{env.Application_Original_Port}} ${{env.DockerHub_UserName}}/${{env.DockerHub_RepoName}}:${{env.DockerHub_TagName}}_${{ github.run_id }}
 
-      - name: Login to Docker Hub
+      - name: login en dockerhub
         uses: docker/login-action@v3
         with:
           username: ${{env.DockerHub_UserName}}
