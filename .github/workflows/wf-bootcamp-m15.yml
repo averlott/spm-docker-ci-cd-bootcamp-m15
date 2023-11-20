@@ -4,7 +4,8 @@ on:
     branches:
       - main
     paths-ignore:
-      - 'Jenkinsfile'
+      - '**/Jenkinsfile'
+      - '**/README.md'
 # prueba
 env:
   DockerHub_UserName: ${{ secrets.DOCKERHUB_USERNAME }}
