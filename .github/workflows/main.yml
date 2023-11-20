@@ -3,9 +3,11 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'Dockerfile'
+    # paths:
+      # - 'Dockerfile'
       # - '.github/workflows/**'
+    paths-ignore:
+      - 'Jenkinsfile'
 env:
   DockerHub_UserName: ${{ secrets.DOCKERHUB_USERNAME }}
   DockerHub_Password: ${{ secrets.DOCKERHUB_TOKEN }}
