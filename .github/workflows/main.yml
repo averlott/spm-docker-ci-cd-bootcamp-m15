@@ -17,7 +17,10 @@ jobs:
   bootcamp-m15-job:
     runs-on: ubuntu-latest
     steps:
-
+    
+      - name: Checkout codigo del repositorio
+        uses: actions/checkout@v2
+        
       - name: contruir imagen docker a partir de dockerfile
         run:
           docker build -t ${{env.DockerHub_UserName}}/${{env.DockerHub_RepoName}}:${{env.DockerHub_TagName}}_${{ github.run_id }} .
