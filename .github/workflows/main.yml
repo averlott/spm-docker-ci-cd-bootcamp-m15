@@ -9,7 +9,7 @@ env:
   DockerHub_Password: ${{ secrets.DOCKERHUB_TOKEN }}
   DockerHub_RepoName: spm-openjdk-bootcamp-m14
   DockerHub_TagName: github
-  Docker_ContainerName: ${{ env.DockerHub_RepoName }}
+  Docker_ContainerName: ${{ DockerHub_RepoName }}
   Application_Original_Port: 3456
   Application_Expose_Port: 8001
 
