@@ -36,5 +36,5 @@ jobs:
           password: ${{env.DockerHub_Password}}
 
       - name: push en dockerhub con la imagen docker creada anteriormente
-        run: |
-          # docker push ${{env.DockerHub_UserName}}/${{env.DockerHub_RepoName}}:${{env.DockerHub_TagName}}_${{ github.run_id }}
+        run:
+          docker push ${{env.DockerHub_UserName}}/${{env.DockerHub_RepoName}}:${{env.DockerHub_TagName}}_${{ github.run_id }}
