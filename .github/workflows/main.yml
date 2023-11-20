@@ -5,6 +5,7 @@ on:
       - main
     paths-ignore:
       - 'Jenkinsfile'
+
 env:
   DockerHub_UserName: ${{ secrets.DOCKERHUB_USERNAME }}
   DockerHub_Password: ${{ secrets.DOCKERHUB_TOKEN }}
