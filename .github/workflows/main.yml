@@ -5,6 +5,7 @@ on:
       - main
     paths:
       - 'Dockerfile'
+      # - '.github/workflows/**'
 env:
   DockerHub_UserName: ${{ secrets.DOCKERHUB_USERNAME }}
   DockerHub_Password: ${{ secrets.DOCKERHUB_TOKEN }}
