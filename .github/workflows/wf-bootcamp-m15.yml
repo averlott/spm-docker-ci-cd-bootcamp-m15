@@ -6,7 +6,7 @@ on:
     paths-ignore:
       - '**/Jenkinsfile'
       - '**/README.md'
-# prueba
+
 env:
   DockerHub_UserName: ${{ secrets.DOCKERHUB_USERNAME }}
   DockerHub_Password: ${{ secrets.DOCKERHUB_TOKEN }}
