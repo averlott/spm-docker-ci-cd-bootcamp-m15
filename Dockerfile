@@ -16,7 +16,7 @@ RUN wget https://github.com/averlott/spm/releases/download/v1.0.0/spm-$SPM_VER.z
 
 # expone el puerto 8001 desde el cual se invocara la aplicacion
 EXPOSE 8001
-# prueba
+
 # setea el comando/ejecutable inicial en el momento de ejecutar el contenedor,
 # en este caso ejecutara un archivo java que inicia la aplicacion elegida
 ENTRYPOINT ["/bin/bash", "-c", "java -jar ./spm-$SPM_VER.jar"]
