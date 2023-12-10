@@ -30,7 +30,7 @@ jobs:
           
       - name: Ejecutar contenedor con la imagen docker creada anteriormente
         run:
-          docker run -d --name ${{env.Docker_ContainerName}} -p ${{env.Application_Expose_Port}}:${{env.Application_Original_Port}} ${{env.DockerHub_UserName}}/${{env.DockerHub_RepoName}}:${{env.DockerHub_TagName}}_${{ github.run_number }}
+          docker run -d --rm --name ${{env.Docker_ContainerName}} -p ${{env.Application_Expose_Port}}:${{env.Application_Original_Port}} ${{env.DockerHub_UserName}}/${{env.DockerHub_RepoName}}:${{env.DockerHub_TagName}}_${{ github.run_number }}
 
       - name: Login en dockerhub
         uses: docker/login-action@v3
